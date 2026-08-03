@@ -38,8 +38,33 @@ The wiki describes **the current state**; history lives in the `log` and the pla
 | [`protocols/close-plan.md`](protocols/close-plan.md) | Ship it: distill into the wiki (the anti-bloat rules live here), archive, log |
 | [`protocols/wiki-setup.md`](protocols/wiki-setup.md) | Bootstrap a fresh project's wiki (SCHEMA + pages + bootstrapper) |
 | [`health-check.md`](health-check.md) | The periodic lint — bloat signals + how to run it |
+| [`metodo/`](metodo/SCHEMA.md) | **The project workflow** — the boilerplate a new project starts from: structure, intake, canonical sources, publishing invariants (pt-BR) |
 
 Implement the protocols however your agent supports it (slash commands, skills, a prompt library). In the reference setup they're Claude Code commands (`/new-plan`, `/close-plan`, `/wiki-setup`).
+
+### Protocols: the source is the running copy, this repo is the release
+
+**Canonical direction, declared so drift stops being an accident.** The protocols that *run* live in the agent's own config (here: `~/.claude/commands/`). They evolve every time a real project bites. `protocols/` in this repo is the **release** — a distilled, store-agnostic snapshot, updated at milestones.
+
+**There is no promise of a mirror**, and that's deliberate: the promise is what produced the drift. Before this was declared, the three files sat at 72/114, 73/151 and 58/216 lines against their sources — the repo silently three months behind, with nothing saying which one was right.
+
+- **Divergence with a declared direction is a version.** Divergence without one is a bug.
+- The release is **shorter on purpose**: it drops vault paths, client names, and store-specific mechanics, and keeps the rule plus the bug that produced it.
+- Sync flows **one way** (source → release), never back. A fix belongs in the running copy first, or the next session overwrites it.
+
+## Two layers: the pattern, and the workflow
+
+This repo is the **boilerplate you start a project from**, and it holds two layers that answer different questions:
+
+- **The pattern** (`guide.md`, `protocols/`, `health-check.md`) — *how the wiki stays lean*: ingest, query, lint, and the anti-bloat loop. Agent- and domain-agnostic.
+- **The workflow** ([`metodo/`](metodo/SCHEMA.md)) — *what the wiki documents*: how a project is structured, where new input goes, what is canonical, how the client-facing layer is written, what publishing refuses to publish. **Written in pt-BR**, and every rule arrives with the bug that produced it.
+
+Two rules keep it a boilerplate instead of a scrapbook:
+
+- **Referenced, never copied.** Each project's wiki **points at** `metodo/` and keeps only what is its own (`client`, `stack`, `conventions`). A cross-project rule duplicated inside a project wiki is a bug — copying the workflow per project is exactly the failure it exists to prevent.
+- **Every rule carries its bug, and the bug carries no names.** The evidence is the situation and the number (*"the count ended up living in 11 files"*) — never the client, the city, or the competitor. A rule that only holds up by naming someone doesn't go in.
+
+Not every project ends in code. The workflow declares [where a project stops](metodo/fases-e-agentes.md) — research and scope, layout, UI handed off, or live — and which parts switch off with it. Verification with no target is worse than no verification.
 
 ## Structure
 

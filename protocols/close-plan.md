@@ -3,6 +3,8 @@
 Close a finished unit of work and **distill** it into the wiki. This is where the wiki stays lean — the anti-bloat rules below are the heart of the whole system.
 
 > Reference impl: a Claude Code slash command (`/close-plan`).
+>
+> **This file is the release, not the source** — see [Protocols: source and release](../README.md#protocols-the-source-is-the-running-copy-this-repo-is-the-release). Fix the running copy first.
 
 ## 1 — Identify the plan
 Read `plans/open/`. One open → assume it. Many → list and ask. Named on invocation → use that.
@@ -40,7 +42,9 @@ For each affected page:
 If anything fails, **distill the page before closing** — don't push it to the periodic lint.
 
 ## 5 — Update the bootstrapper (only what's durable)
-The session bootstrapper (`AGENTS.md`/`CLAUDE.md`) is **not** a changelog — it's read whole every session. Touch it only if something durable changed (deploy edge, branch, new repo, stack, a cross-project decision) or a *live* pending thread opened/closed. Keep any "in progress / pending" section to ~3-5 bullets, prunable — never paste a delivery summary here.
+The session bootstrapper (`AGENTS.md`/`CLAUDE.md`) is **not** a changelog — it's read whole every session. Touch it only if something durable changed (deploy edge, branch, new repo, stack, a cross-project decision) or a *live* pending thread opened/closed. Keep any "in progress / pending" section to ~3-5 bullets, prunable — never paste a delivery summary here. **In most closes you don't touch it at all.**
+
+⚠️ **The code repo's own bootstrapper is out of scope here** — it's managed by `wiki-setup`, not by this protocol.
 
 ## 6 — Close the plan
 Frontmatter → `status: closed` + `closed: [today]`. Move the file `plans/open/` → `plans/closed/`.
@@ -50,12 +54,24 @@ Flip the row `open → closed`, add the close date, remove it from the "## Open"
 
 ## 8 — Append to `log.md`
 ```
-## [date] — PLAN-NNN closed: [Name]
-**Delivered:** [1-2 line summary of what shipped]
+## [date] — [Tag] PLAN-NNN closed: [Name]
+**Planning:** [only if new-plan recorded a decision, discarded alternative, or research that Delivered won't repeat — otherwise omit the line]
+**Delivered:** [what shipped + where it stopped (PR/deploy), ~2 sentences]
 **Wiki updated:** [[wiki/page1]] · [[wiki/page2]]
-**Learnings:** [the most important point]
+**Learnings:** [the most valuable part of the entry — don't skimp here]
 ```
-Add **at the end** (chronological, newest at the bottom). Never reorder old entries.
+
+**Merge, don't stack.** If `new-plan` already wrote a "PLAN-NNN started" entry, **rewrite that entry** as the close entry (update the date, reposition to the end if needed) instead of appending a second `##`. Two `##` for one plan double the log without adding information — what the opening had that's unique goes in the `**Planning:**` line. Exception: a plan superseded and never closed — the opening entry stays, marked in its own title.
+
+**Trim `Delivered`.** The full narrative (QA rounds, what was tried and reverted) already lives in the plan file in `plans/closed/`, which is never deleted. The log keeps only: what exists now that didn't before, and where it stopped. Past ~4 lines, `Delivered` is becoming a copy of the plan.
+
+**Triage the learnings.** A durable learning about the system (a rule, a recurring gotcha, a convention) **also becomes wiki text** in step 4. An episodic one (an environment gotcha, a tool that failed that day) stays in the log only.
+
+**`[Tag]` = the project tag, required only for a multi-project client** (see `new-plan`). It's what lets you slice the log by project and disambiguate `PLAN-NNN` across projects of the same client.
+
+⚠️ **Never link to agent memory with a wiki-link.** Memory files live outside the knowledge store, so `[[some-memory-slug]]` never resolves and becomes a permanent dead link — 65 of those had to be cleaned up in one pass. Reference them as code: `` `memory: <slug>` ``. Same rule for code paths (`` `src/lib/seo.ts` ``, not a wiki-link).
+
+Add **at the end** (chronological, newest at the bottom). Check the date of the last entry before writing. Never reorder old entries.
 
 ## 9 — Git branch
 If a matching `feature/PLAN-NNN-*` branch exists: merged → suggest deleting local/remote; open PR → remind the deploy step is pending (never merge the deploy branch without explicit OK). No branch → nothing to do.
