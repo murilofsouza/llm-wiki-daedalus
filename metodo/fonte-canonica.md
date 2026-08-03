@@ -119,6 +119,26 @@ as mesmas e **o divisor aumentou**. Publicar só esse número é verdade enganos
 Vão **duas colunas**: uma só com o numerador restrito (*anúncio por dobra*) e uma com o total
 (*comercial por dobra*). Vale para qualquer razão cujo denominador é o tamanho da página.
 
+## Reescrita mecânica em lote: prove que só o que devia mudar mudou
+
+Toda propagação grande tem uma versão mecânica — normalizar largura de linha, trocar um termo, renomear
+um campo em 49 arquivos. E ela tem um modo de falha próprio: **o script funciona em 48 e come uma tabela
+no 49º**, e ninguém percebe porque o diff é grande demais para ler.
+
+**A prova é comparar a forma normalizada, não o arquivo.** Aplique ao antes e ao depois uma normalização
+que **apaga a dimensão que você quis mudar** — se a largura de linha era o alvo, colapse todo whitespace.
+Se as duas normalizações são idênticas, **só a dimensão pretendida mudou**, e isso é demonstração, não
+impressão. Confira separadamente as estruturas que o script deveria preservar (tabela por tabela, bloco de
+código por bloco de código): elas não sobrevivem à normalização e precisam de contagem própria.
+
+**Backup do original antes, sempre** — a prova pode falhar, e aí você precisa do estado anterior, não de
+um `git checkout` que o vault não tem.
+
+**E poupe o histórico.** Não rode transformação em lote em `Plans/closed/` nem em `_arquivo/`: o valor
+deles é **não terem mudado**, o ganho é zero (ninguém lê buscando renderização bonita) e o risco é
+danificar registro que não se regenera. É a mesma regra de [varredura](#2-achado-aponta-onde-dói-não-onde-termina)
+aplicada a edição mecânica.
+
 ## O limite honesto: auditoria acha contradição, não engano compartilhado
 
 Quando o vault, a camada do cliente, as specs e o construído afirmam **a mesma coisa errada**, não há

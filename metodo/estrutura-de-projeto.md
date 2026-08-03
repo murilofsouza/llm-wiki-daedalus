@@ -106,6 +106,26 @@ Um cliente, uma wiki — compartilhada por todos os projetos dele. `SCHEMA.md` p
 sob demanda. Wiki por projeto duplicaria `client` e `stack` no segundo projeto do mesmo cliente, e a
 segunda cópia é a que fica velha.
 
+## Largura de linha é do store, não do texto
+
+**Num vault (Obsidian e similares): um parágrafo, uma linha.** Sem hard wrap.
+
+O bug, achado num projeto real: os geradores quebravam parágrafo em ~110 colunas por hábito de
+terminal. Com *strict line breaks* desligado — o padrão —, **cada quebra simples renderiza como
+`<br>`**, e o texto aparece picado no meio da frase. Aconteceu nas páginas que **o cliente lê**, que é o
+pior lugar possível: o material fica com cara de rascunho sem que nada esteja errado no conteúdo.
+
+**Num repo git: hard wrap está certo e é melhor.** Markdown renderizado (GitHub e afins) trata quebra
+simples como espaço, e a linha curta faz o diff apontar a frase que mudou em vez do parágrafo inteiro.
+
+Ou seja: **a mesma regra escrita nos dois lugares é regra oposta.** Quem normaliza o vault não deve
+normalizar o repo — desfaz o diff legível sem ganhar renderização nenhuma. Ao mover texto de um para o
+outro, a largura se converte; o conteúdo, não.
+
+**O que preserva a quebra de propósito**, e que nenhuma normalização pode tocar: frontmatter · bloco de
+código · linha de tabela · item de lista (continuação de item **junta** na linha do item) · quebra
+explícita (dois espaços ou `\`).
+
 ## Quando um doc se divide
 
 **Split por ciclo de vida ou por público — nunca por tamanho.**
