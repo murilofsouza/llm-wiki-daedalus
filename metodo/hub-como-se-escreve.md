@@ -47,6 +47,44 @@ tradução não fique atrás da fonte.
 - **O índice lateral é alimentado só pelos `<h2>`.** Item que não precisa de entrada no índice é `<h3>`.
   Uma página com 21 itens em `<h2>` gerou um índice **maior que a tabela que ele deveria resumir**.
 
+## A forma e a densidade da camada
+
+**A forma vem das perguntas do cliente, não da contagem de docs internos.** Esta é a regra, e é a que
+falha primeiro.
+
+O bug, medido: um gerador produziu a camada a partir da lista de notas internas que existiam — nove
+notas, oito páginas, **nenhuma pasta**. O resultado ficou fino e sem hierarquia, e a causa não era falta
+de conteúdo: era a camada ter **herdado a forma do interno**. Camada que espelha a estrutura interna não
+é tradução — é cópia com outras palavras, e o sintoma é sempre o mesmo, uma página por doc.
+
+**O mapeamento é N:M de propósito.** Cinco specs internas podem virar uma página do cliente (ele decide
+uma coisa, não cinco); uma spec interna pode virar três (ele decide três coisas que o doc tratava
+junto). Se a contagem de páginas ≈ a contagem de docs internos, **você copiou**.
+
+### Como se monta
+
+1. **Liste o que o cliente precisa decidir ou entender**, na ordem em que ele vai ler. Isso — e não o
+   `ls` do vault — é o índice.
+2. **Número = ordem de leitura**, igual às pastas de projeto. A ordem é de **apresentação**: escopo e
+   método primeiro, o que você precisa dele por último.
+3. **Seção vira pasta ao ter a segunda página.** Uma página solta não é seção; pasta com um arquivo é
+   hierarquia decorativa.
+4. **A capa é a porta:** o que o projeto é, a etapa atual, e *"por onde começar"*.
+
+### As duas bordas de densidade
+
+| Borda | Sinal | O que fazer |
+|---|---|---|
+| **Fina demais** | a página não se lê sozinha — só faz sentido depois de outra; ou tem 4–5 bullets e nenhuma decisão dentro | **não é página, é seção** de outra |
+| **Grossa demais** | o índice lateral fica maior que o conteúdo que ele resume (21 itens em `<h2>` já aconteceu) | **divide**, ou rebaixa item para `<h3>` |
+
+A régua entre as duas: **uma página existe se o cliente puder abrir só ela e sair com algo — um número,
+uma regra, um limiar, uma decisão a tomar.** Se não sai com nada disso, ela é parágrafo de outra página.
+
+E o teste rápido de que a camada tem densidade: **ela responde uma pergunta que nenhum doc interno
+responde na mesma forma.** Se toda página tem um doc interno correspondente 1:1, a tradução não
+aconteceu.
+
 ## Lint avisa, invariante aborta — e por que a divisão
 
 | | Aborta | Avisa |

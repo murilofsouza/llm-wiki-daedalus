@@ -57,6 +57,23 @@ bug latente.
 Ver [hub-como-se-escreve](hub-como-se-escreve.md). É a única invariante cuja razão é vazamento, não
 consistência — e é a mais barata de todas.
 
+### Hard wrap no corpo — candidata com as exclusões declaradas
+
+**Consequência real:** parágrafo quebrado em ~110 colunas renderiza `<br>` por quebra num vault com
+*strict line breaks* desligado, e o cliente lê o material **picado no meio da frase**. Aconteceu num
+projeto real, nas páginas que o cliente lê — a pior superfície possível para um defeito que não é de
+conteúdo.
+
+**Forma clara**, mas só depois de excluir o que quebra de propósito: frontmatter · bloco de código ·
+linha de tabela · item de lista (continuação junta na linha do item) · quebra explícita (dois espaços ou
+`\`). Fora dessas, **duas linhas não vazias seguidas dentro de um parágrafo é o defeito** — é estrutural,
+não heurística.
+
+**Antes de ligar, a régua acima vale:** rode contra o corpus inteiro e leve a zero falso positivo. E note
+que **a mesma regra é oposta num repo git** — lá o hard wrap está certo (ver
+[estrutura-de-projeto](estrutura-de-projeto.md#largura-de-linha-é-do-store-não-do-texto)). A checagem é
+do gerador que publica **do vault**, não do repo.
+
 ## Detalhes de implementação que custaram caro
 
 - **Detector de link tem de olhar o rótulo, não só o alvo.** Um bug de regex gerou **213 wikilinks com
