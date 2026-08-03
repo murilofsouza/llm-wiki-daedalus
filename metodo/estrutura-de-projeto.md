@@ -24,6 +24,32 @@ fase por outro caminho.
 e um deles passou uma semana afirmando que a fase do wireframe ainda não havia começado — com o
 wireframe no ar. Todos os outros docs **apontam** para o `roadmap`; nenhum afirma a fase.
 
+## A mesma regra desce um nível: o nome do arquivo é a disciplina do documento
+
+A regra de cima diz o que a **pasta** se chama e nunca disse o que o **arquivo** se chama — e o
+segundo projeto a usar este método travou exatamente aí, ao montar a camada do cliente. A formulação
+que destravou: *"pasta = a disciplina daquela seção, nome do arquivo = a disciplina daquele
+documento"*. É a regra da pasta aplicada um nível abaixo, e vale nos dois lados:
+
+| | Forma | Exemplo |
+|---|---|---|
+| **Doc de projeto** | prefixo de classe + assunto, ou só o assunto | `Tela — Categoria` · `DEC-007 — <assunto>` · `Viabilidade e custos` |
+| **Camada do cliente** | `<seção>.<n> <Assunto>` — o número repete o da seção, o nome é a disciplina da página | `4.03 Categoria` · `6.1 Decisões pendentes` |
+
+**O que o nome nunca é:** a fase (`Descoberta`), a data (`notas-30-07`), o rótulo interno de trabalho
+(`Passo 0`, `bloco 2b`) nem o número sozinho (`4.03`). Os três primeiros envelhecem; o último obriga a
+abrir o arquivo para saber o que é.
+
+**Por que isto não é preferência de arrumação.** A publicação já **aborta** quando o nome do arquivo, a
+URL e o `H1` divergem ([invariantes](invariantes-de-publicacao.md#a-url-sai-do-nome-do-arquivo-o-título-publicado-sai-do-h1--e-os-dois-batem)) — mas
+esse invariante só garante que os três **concordem**, não que estejam certos. Arquivo nomeado pela fase
+passa no invariante e força o `H1` — **o texto que o cliente lê** — a repetir a fase. A regra de nome
+é o que impede o invariante de proteger um nome errado com três cópias idênticas.
+
+**O tell de que falta esta regra num projeto:** alguém pede "o padrão do outro projeto" em vez de
+derivar do método. Convenção que só existe como exemplo se copia por imitação, e imitação erra no
+primeiro caso que não se parece com o exemplo.
+
 ## Os três arquivos da raiz do projeto
 
 Só três, e cada um existe porque a alternativa falhou:

@@ -7,8 +7,8 @@ nem sobre a camada do cliente: é o que a spec pode prometer e o que só a coisa
 Estas regras estavam enterradas numa página de convenções de front-end, entre gotchas de framework. São
 método: valem para qualquer stack.
 
-> **O *como* medir é do stack** (subir o build, contornar o gate de acesso, qual ferramenta) e mora na
-> wiki do cliente. Aqui está **o que** se mede e **o que invalida a medição**.
+> **O *como* medir é do stack** (subir o build, qual ferramenta) e mora na wiki do cliente. Aqui está
+> **o que** se mede, **o que invalida a medição** e **o que não se contorna**.
 
 **As quatro primeiras regras valem para qualquer coisa construída** — inclusive um layout que é o
 entregável final, sem produto depois. As duas últimas (discriminador, estado global) são de código: num
@@ -20,6 +20,31 @@ aplica** a projeto que termina em pesquisa e escopo — ver
 e dobra é o que dá valor ao descartável — é para isso que ele existe. Hashear spec contra código que vai
 ser jogado fora, não. Ver
 [fases-e-agentes](fases-e-agentes.md#e-declare-se-o-construído-sobrevive-ao-projeto).
+
+## O que trava a medição não se contorna — se remove
+
+Se existe qualquer coisa entre o construído e o navegador, **ela é dívida de método, não
+inconveniência**: um método que mede em vez de presumir para de medir quando medir dá trabalho.
+
+O caso: o entregável ficava atrás de um **gate de senha**, que rodava também no servidor de
+desenvolvimento. A wiki do projeto documentava **dois contornos** — servir o HTML pré-renderizado do
+build num estático, e subir o servidor de produção com um segredo de sessão descartável para assinar o
+cookie do gate. Os dois funcionavam, e ficaram escritos como procedimento por semanas.
+
+**O tell de que era contorno e não solução:** o procedimento pedia **manipular segredo de sessão para
+medir a altura de uma página**. Quando a saída "barata" exige tocar em credencial, quase sempre existe
+uma mais barata que não exige.
+
+A solução foi uma linha — o gate deixou de rodar em modo desenvolvimento, e só ele; qualquer build
+deployado continua atrás da senha, com uma variável para religar. **O que ela custou até ser
+escrita:** uma rodada de validação inteira fechou com **três números marcados "remedir"**, porque a
+medição dependia de alguém digitar senha, e a propagação desses três números para os documentos que os
+citam teve de ser refeita depois.
+
+**A regra, generalizada:** proteção de acesso, dado de fixture, ambiente que só sobe com credencial de
+terceiro — tudo isso é legítimo em produção e **candidato a desligar em desenvolvimento**, porque em
+`localhost` a ameaça que justificava a proteção não existe. O gate protege contra a internet; não há
+internet chegando na sua máquina.
 
 ## Densidade não se valida em texto
 
@@ -94,6 +119,7 @@ Antes de dar um entregável por conferido:
 - [ ] nenhum componente novo entrou por causa de variante
 - [ ] nenhum discriminador com um valor só
 - [ ] todo critério de aceite **executável** — existe um passo que o faz falhar
+- [ ] **nada entre o construído e o navegador** — nenhum passo de medição pede senha ou segredo
 
 ---
 

@@ -23,6 +23,7 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 | Pergunta | Resposta |
 |---|---|
 | **Como se organizam as pastas de um projeto?** | [estrutura-de-projeto](estrutura-de-projeto.md) — número é ordem de leitura, nome é assunto |
+| **Como se chama o arquivo?** | [estrutura-de-projeto](estrutura-de-projeto.md#a-mesma-regra-desce-um-nível-o-nome-do-arquivo-é-a-disciplina-do-documento) — a disciplina daquele documento, nunca a fase |
 | **Chegou pesquisa / decisão / mudança que o cliente lê. Onde vai?** | [regra-de-chegada](regra-de-chegada.md) — três perguntas, três destinos |
 | **Este número aparece em quantos lugares?** | [fonte-canonica](fonte-canonica.md) — número medido não se copia, cita-se com a fonte |
 | **Como se escreve o material que o cliente lê?** | [hub-como-se-escreve](hub-como-se-escreve.md) — proposta única no presente |
@@ -35,12 +36,12 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 
 | Página | Conteúdo |
 |---|---|
-| [estrutura-de-projeto](estrutura-de-projeto.md) | pastas, numeração, os três arquivos da raiz, registros contínuos, `_arquivo/`, quando e como dividir um doc |
+| [estrutura-de-projeto](estrutura-de-projeto.md) | pastas, numeração, **nome de arquivo**, os três arquivos da raiz, registros contínuos, `_arquivo/`, quando e como dividir um doc |
 | [regra-de-chegada](regra-de-chegada.md) | a rota de qualquer coisa nova, para entrada nova não virar fonte concorrente |
 | [fonte-canonica](fonte-canonica.md) | a tabela de fonte única; como um número medido se propaga sem deixar cópia velha atrás |
 | [hub-como-se-escreve](hub-como-se-escreve.md) | a camada do cliente: voz, o que fica, o que sai, e as três direções de verificação |
 | [invariantes-de-publicacao](invariantes-de-publicacao.md) | o que aborta a publicação, o que só avisa, e a régua para uma checagem entrar |
-| [verificacao-de-entregavel](verificacao-de-entregavel.md) | como se confere um wireframe: densidade, conteúdo de exemplo, variantes, critério de aceite exercitável |
+| [verificacao-de-entregavel](verificacao-de-entregavel.md) | como se confere um wireframe: densidade, conteúdo de exemplo, variantes, critério de aceite exercitável, **o que trava a medição** |
 | [fases-e-agentes](fases-e-agentes.md) | fase → agente → fan-out, profundidade calibrada, rastreio por superfície |
 
 ## O que este método não é
