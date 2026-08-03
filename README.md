@@ -42,6 +42,16 @@ The wiki describes **the current state**; history lives in the `log` and the pla
 
 Implement the protocols however your agent supports it (slash commands, skills, a prompt library). In the reference setup they're Claude Code commands (`/new-plan`, `/close-plan`, `/wiki-setup`).
 
+### Protocols: the source is the running copy, this repo is the release
+
+**Canonical direction, declared so drift stops being an accident.** The protocols that *run* live in the agent's own config (here: `~/.claude/commands/`). They evolve every time a real project bites. `protocols/` in this repo is the **release** — a distilled, store-agnostic snapshot, updated at milestones.
+
+**There is no promise of a mirror**, and that's deliberate: the promise is what produced the drift. Before this was declared, the three files sat at 72/114, 73/151 and 58/216 lines against their sources — the repo silently three months behind, with nothing saying which one was right.
+
+- **Divergence with a declared direction is a version.** Divergence without one is a bug.
+- The release is **shorter on purpose**: it drops vault paths, client names, and store-specific mechanics, and keeps the rule plus the bug that produced it.
+- Sync flows **one way** (source → release), never back. A fix belongs in the running copy first, or the next session overwrites it.
+
 ## Two layers: the pattern, and the workflow
 
 This repo is the **boilerplate you start a project from**, and it holds two layers that answer different questions:
