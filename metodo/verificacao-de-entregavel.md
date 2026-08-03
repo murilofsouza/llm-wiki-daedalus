@@ -16,6 +16,11 @@ projeto que entrega layout elas não têm alvo, e o que não tem alvo se remove.
 aplica** a projeto que termina em pesquisa e escopo — ver
 [SCHEMA](SCHEMA.md#o-que-vale-em-todo-projeto-e-o-que-depende-de-haver-construção).
 
+**Se o construído é descartável, isto continua valendo e a verificação de drift não.** Medir densidade
+e dobra é o que dá valor ao descartável — é para isso que ele existe. Hashear spec contra código que vai
+ser jogado fora, não. Ver
+[fases-e-agentes](fases-e-agentes.md#e-declare-se-o-construído-sobrevive-ao-projeto).
+
 ## Densidade não se valida em texto
 
 **Estrutura e escopo fecham em Markdown; densidade percebida só no HTML renderizado.** O orçamento de

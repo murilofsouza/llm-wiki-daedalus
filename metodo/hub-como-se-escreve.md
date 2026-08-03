@@ -23,6 +23,17 @@ tradução não fique atrás da fonte.
 - **O que fica:** número medido (**com o viewport ao lado**), regra, limiar e pendência do cliente. Sai
   a moldura temporal em volta deles — o argumento não perde força e o ruído cai por metade.
 
+- **Toda afirmação carrega o status epistêmico: medido, ou hipótese.** Não é ressalva de rodapé — é
+  rótulo por afirmação, visível (um selo, um par de ícones), com a régua declarada numa página.
+  **Persona, jornada e funil são hipótese** até um dado dizer o contrário; contagem, tempo e taxa
+  medidos são fato, com a fonte ao lado.
+
+  O bug que isso evita não é o cliente ser enganado — é ele **decidir** com base numa hipótese
+  apresentada com a mesma tipografia de um número medido, e a equipe não conseguir mais separar as
+  duas seis semanas depois. Um material de pesquisa sem esse rótulo é um material onde **a parte mais
+  forte empresta autoridade para a mais fraca**. E o custo é assimétrico: rotular custa um selo,
+  desfazer uma decisão tomada em cima de hipótese custa a fase.
+
 - **Bloco de rodada não se edita, se dissolve.** Uma seção que existe *porque* houve uma rodada ("o que
   o briefing acrescentou") não tem razão de ser sem a cronologia: as decisões dela vão para onde
   pertencem **por assunto**.
@@ -47,6 +58,28 @@ tradução não fique atrás da fonte.
 Reler uma fonte é trabalho de **tradução**, não de sintaxe: bloquear o commit obrigaria a fazer esse
 trabalho no meio de outro. Ver [invariantes-de-publicacao](invariantes-de-publicacao.md) para a régua de
 entrada de cada checagem.
+
+## O anti-padrão: publicar a nota interna crua
+
+Existe um terceiro modo, e ele é o atalho que se toma quando a camada parece burocracia: **apontar o
+gerador direto para a nota interna** e publicar o corpo dela, tirando só o frontmatter e desmanchando
+os links. Sem camada, sem tradução, sem hash — e funciona no primeiro dia.
+
+O que ele custa, medido num projeto que fez exatamente isso:
+
+- **Vaza o nome do doc interno.** Um `[[08 — Auditoria de SEO Técnico]]` não some: o desmanchador de
+  link o transforma no **texto literal**, e o cliente lê o nome do arquivo interno. Onde a camada
+  existe, wikilink interno no corpo **aborta a publicação** — aqui ele é convertido e publicado.
+- **Vaza o vocabulário interno pelo título.** "Personas (**provisórias**)", "Documento-base
+  (**Passo 0**)" — a nomenclatura de trabalho vira cabeçalho de seção na página do cliente.
+- **Publica a contradição.** Uma decisão revertida cuja versão errada seguia viva na nota estava, por
+  consequência, **no ar para o cliente** — sem que nada no caminho pudesse acusar.
+- **Não há o que verificar.** Não existe `fontes_conferidas` porque não existe tradução para ficar
+  velha. Parece economia de verificação; é ausência do objeto verificável.
+
+**A regra:** publicar a nota interna crua não é "a camada mais simples", é **não ter camada** — e o
+preço é pago em vazamento, não em tempo. Se a camada não couber no orçamento, o caminho honesto é
+publicar **menos** (uma página escrita para o cliente) em vez de publicar o interno inteiro.
 
 ## Por que a camada paga o passo a mais
 

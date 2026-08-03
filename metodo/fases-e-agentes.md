@@ -64,6 +64,26 @@ projeto sem código, ou uma coluna de template num projeto de layout, é campo v
 varredura lê como pendência — e treina a ignorar campo vazio. **O que não se aplica se remove, com uma
 linha dizendo por quê** — a mesma regra do [`_arquivo/`](estrutura-de-projeto.md).
 
+### E declare se o construído sobrevive ao projeto
+
+Segunda pergunta, independente da primeira: **o artefato que a gente constrói vira o produto, ou morre
+na entrega?** Wireframe navegável, protótipo e ambiente de validação costumam ser **descartáveis** — a
+produção é outra stack, feita por outro time.
+
+Isso muda o que vale verificar, e nas duas direções:
+
+| O construído é… | Então |
+|---|---|
+| **o produto** | a direção `spec → código` paga: a spec vira o que roda, e drift silencioso é dívida real |
+| **descartável** | ela quase nunca paga. O construído existe para **validar uma decisão**, e quando a decisão foi validada ele cumpriu o papel. Hashear 25 specs contra código que vai ser jogado fora é bookkeeping sem consumidor |
+
+**Declare isso no começo, por escrito, e repita onde alguém vá querer reaproveitar.** A frase que
+protege é *"não usar X para reaproveitar — não reaproveita"*: sem ela, alguém trata o descartável como
+fundação, e aí o wireframe ganha arquitetura, testes e revisão que ninguém vai colher. **O oposto
+também é erro:** descartável não é desculpa para não medir o que se validou nele — a densidade e a
+dobra continuam sendo medidas na coisa construída (ver
+[verificacao-de-entregavel](verificacao-de-entregavel.md)).
+
 E o que **não** depende de haver implementação, em nenhum dos quatro casos: a estrutura de pastas, a
 regra de chegada, a fonte canônica, a voz da camada do cliente e as invariantes que protegem a
 publicação dela. É o núcleo do método — projeto de pesquisa pura tem as cinco.
@@ -111,9 +131,19 @@ O bug: uma spec **regrediu** ao ser reescrita a partir de versão antiga, por qu
 achou mais rápido consertar de passagem. Fan-out sem dono exclusivo por diretório produz exatamente isso
 — dois agentes com a mesma boa intenção e contextos diferentes.
 
-## "A validar com dados" tem de ser honesta
+## Fato e hipótese não se misturam — e "a validar" é o caso fraco disso
 
-Marcar uma afirmação como *a validar* é dívida, e dívida tem duas saídas legítimas:
+A regra maior é de [hub-como-se-escreve](hub-como-se-escreve.md#a-voz-uma-proposta-única-no-presente):
+**toda afirmação carrega o status epistêmico**, rotulado por afirmação. Aqui está o que isso cobra do
+pipeline, que é onde a mistura nasce.
+
+**Cada fase declara o que ela produz de medido e o que ela produz de hipótese.** Descoberta produz
+inventário (medido) e diagnóstico (interpretação). UX produz persona, jornada e funil — **hipótese, as
+três**, até um dado dizer o contrário. Auditoria técnica produz número medido. Se a fase não declara,
+a fase seguinte consome tudo como fato, e é aí que uma persona provisória vira premissa de arquitetura.
+
+**"A validar com dados" é o caso particular:** a afirmação que já sabe **qual** dado a resolveria.
+Marcar assim é dívida, e dívida tem duas saídas legítimas:
 
 - **O dado chegou** → a marca **sai** e o número entra **com a fonte**.
 - **O dado não chegou** → a marca **fica**, e **diz de que dado depende**.
