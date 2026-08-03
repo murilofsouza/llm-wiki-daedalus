@@ -38,6 +38,32 @@ Só três, e cada um existe porque a alternativa falhou:
 nossas, bloqueios de ambiente, pesquisa de custo). A camada do cliente é **espelho**, em linguagem de
 negócio, e só do que precisa de resposta dele.
 
+## A forma mínima — todo projeto tem esta
+
+Antes de qualquer conjunto numerado, a base. Modelo **Cliente > Projeto** (em produto próprio, o cliente
+é o produto). Sub-projeto só quando a iniciativa é claramente distinta — objetivo, ciclo de vida ou
+público diferentes; senão mantém flat.
+
+```
+{{Cliente}}/
+├── {{Cliente}}.md      ← hub de navegação
+├── wiki/               ← nível do cliente, compartilhada por todos os projetos dele
+├── _Shared/            ← docs de trabalho cross-projeto
+├── log.md              ← append-only, uma entrada por sessão
+└── {{Projeto}}/
+    ├── {{Projeto}}.md  ← nota-projeto: uma linha por pasta
+    ├── roadmap         ← fonte única da fase
+    ├── PENDENCIAS      ← o que está aberto, com dono e o que trava
+    ├── Briefings/  Specs/  Plans/  Meetings/  Decisions/  Assets/
+    └── _arquivo/       ← com o motivo escrito
+```
+
+**Nenhum doc solto na raiz do projeto além dos três** — cada um nasce na pasta certa, com frontmatter
+por tipo. `Specs/` é entregável de cliente; `Plans/` é como o trabalho foi feito (`open/`, `closed/`,
+`_INDEX`).
+
+Projeto maior acrescenta a camada numerada abaixo. Projeto pequeno para aqui, e isso é completo.
+
 ## A linha do tempo — default de redesign, adaptável
 
 Numeradas porque se leem em ordem:
