@@ -30,6 +30,7 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 | **O que a publicação verifica sozinha, e o que ela recusa publicar?** | [invariantes-de-publicacao](invariantes-de-publicacao.md) |
 | **Como se confere um wireframe / entregável?** | [verificacao-de-entregavel](verificacao-de-entregavel.md) |
 | **Quem faz cada fase, e com que profundidade?** | [fases-e-agentes](fases-e-agentes.md) |
+| **O cliente lê a documentação num site?** | [portal-de-documentacao](portal-de-documentacao.md) — **capacidade opcional** |
 | **O que é o padrão da wiki em si (ingest, query, lint)?** | [`guide.md`](../guide.md) · [`health-check.md`](../health-check.md) |
 
 ## Páginas
@@ -43,6 +44,7 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 | [invariantes-de-publicacao](invariantes-de-publicacao.md) | o que aborta a publicação, o que só avisa, e a régua para uma checagem entrar |
 | [verificacao-de-entregavel](verificacao-de-entregavel.md) | como se confere um wireframe: densidade, conteúdo de exemplo, variantes, critério de aceite exercitável, **o que trava a medição** |
 | [fases-e-agentes](fases-e-agentes.md) | fase → agente → fan-out, profundidade calibrada, rastreio por superfície |
+| [portal-de-documentacao](portal-de-documentacao.md) | a superfície onde o cliente lê: o que ela exige, as decisões de desenho, o contrato de config e a direção de evolução |
 
 ## O que este método não é
 
@@ -63,7 +65,7 @@ outros vão até o ar. O método é o mesmo — o que muda é **quanto dele liga
 | [estrutura-de-projeto](estrutura-de-projeto.md) | [verificacao-de-entregavel](verificacao-de-entregavel.md) — precisa de coisa construída para medir |
 | [regra-de-chegada](regra-de-chegada.md) | o rastreio por superfície e a coluna de implementação ([fases-e-agentes](fases-e-agentes.md)) |
 | [fonte-canonica](fonte-canonica.md) | a direção de verificação **spec → código** ([hub-como-se-escreve](hub-como-se-escreve.md)) |
-| [hub-como-se-escreve](hub-como-se-escreve.md) + [invariantes-de-publicacao](invariantes-de-publicacao.md) — desde que exista camada publicada para o cliente | |
+| [hub-como-se-escreve](hub-como-se-escreve.md) + [invariantes-de-publicacao](invariantes-de-publicacao.md) — desde que exista camada publicada para o cliente | [portal-de-documentacao](portal-de-documentacao.md) — **só se o cliente lê a documentação num site**; quem entrega em documento ou apresenta em reunião não tem portal |
 
 **Decida onde o projeto termina no começo**, e remova o que não se aplica com uma linha dizendo por quê.
 Verificação sem alvo é pior que verificação ausente: campo vazio a próxima varredura lê como pendência.
@@ -94,6 +96,9 @@ valor mora no projeto:
 | Números medidos | densidade, contagens de acervo, baseline de audiência | o doc que mediu — citado com a fonte, nunca copiado |
 | Padrões de varredura | o "vizinho estável" que acha as ocorrências naquele corpus | anotado onde a propagação foi feita |
 | Regras de domínio | o que o negócio do cliente exige ou proíbe, e o que o stack dele impõe | wiki do cliente |
+| Prefixo de rota da documentação | onde a camada do cliente é servida — **e é também nome de pasta**, então os dois se conferem | config do portal ([portal-de-documentacao](portal-de-documentacao.md)) |
+| Forma do hash de verificação | `trim`, comprimento, sentinelas aceitas — diferença aqui produz **falso positivo em massa** | config do portal |
+| Credencial (senha, segredo de sessão) | **não é config** — config vai versionada. Fica no código com razão escrita, ou em ambiente falhando fechado; o que não vale é não declarar qual | fora da config, declarado |
 
 ## Onde mora o quê
 
