@@ -1,5 +1,5 @@
 # Método de projeto — o mapa
-Updated: 2026-08-03
+Updated: 2026-08-04
 
 O **workflow de projeto**: como um projeto se organiza, por onde entra coisa nova, o que é fonte única,
 como o material do cliente fala e o que a publicação verifica sozinha.
@@ -44,7 +44,7 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 | [invariantes-de-publicacao](invariantes-de-publicacao.md) | o que aborta a publicação, o que só avisa, e a régua para uma checagem entrar |
 | [verificacao-de-entregavel](verificacao-de-entregavel.md) | como se confere um wireframe: densidade, conteúdo de exemplo, variantes, critério de aceite exercitável, **o que trava a medição** |
 | [fases-e-agentes](fases-e-agentes.md) | fase → agente → fan-out, profundidade calibrada, rastreio por superfície |
-| [portal-de-documentacao](portal-de-documentacao.md) | a superfície onde o cliente lê: o que ela exige, as decisões de desenho, o contrato de config e a direção de evolução |
+| [portal-de-documentacao](portal-de-documentacao.md) | a superfície onde o cliente lê: o que ela exige, as decisões de desenho, o contrato de config, **o que só o build de produção lê** e a direção de evolução |
 
 ## O que este método não é
 

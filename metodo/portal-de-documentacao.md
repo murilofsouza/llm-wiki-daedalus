@@ -1,5 +1,5 @@
 # O portal de documentação
-Updated: 2026-08-03
+Updated: 2026-08-04
 
 A superfície onde o cliente **lê** a camada escrita para ele: navegação por seção, índice da página,
 busca, selo de etapa, comentários, gate de acesso.
@@ -99,6 +99,37 @@ ele falhou seria trocar o essencial pelo acessório.
 
 E **a variante desligada não sinaliza falta** — não falta nada, não existe alvo. Verificação sem alvo é
 pior que verificação ausente.
+
+## O que o build de produção lê, e a prova local não
+
+O portal é servido de um container que **não é a máquina onde ele foi escrito**: o build instala a
+partir do **lockfile**, não do manifesto de dependências. Isso abre uma classe de defeito que nenhuma
+prova local alcança.
+
+O caso: um `install` de rotina reescreveu o lockfile **apagando** o campo que declara a biblioteca C de
+cada dependência binária de plataforma. Nada no repo acusou — checagem de tipos, lint e o gerador
+passaram, e passariam de novo, porque **nenhum dos três lê o lockfile**. O único ambiente que lê aquele
+campo é o build da imagem, que é enxuta e usa exatamente a variante que o campo apagado selecionava.
+
+Como se reconhece no diff: só **remoções**, todas do mesmo campo, espalhadas por dependências
+opcionais de plataforma que ninguém tocou — e nenhuma linha de versão mudando.
+
+A causa é banal e vai repetir: **a ferramenta local era mais velha que a que escreveu o lockfile.**
+Versão diferente do gerenciador reescreve o arquivo na forma que ela conhece, e o diff sai parecendo
+mudança de dependência.
+
+O que fica:
+
+- **Lockfile é artefato de build, não arquivo de código.** Diff nele se lê linha por linha antes de
+  entrar no commit — sobretudo quando a tarefa não era mexer em dependência. Diff que aparece sozinho
+  depois de um `install` de rotina é a forma normal desse defeito, não exceção.
+- **`install` de rotina não viaja no commit da tarefa.** Lockfile mexido numa tarefa que não era de
+  dependência é ruído: restaura.
+- **A suíte de provas cobre o que ela lê.** Três verificações verdes não são evidência sobre um arquivo
+  que nenhuma das três abre. Ali a prova é o build — ou, na falta dele, o diff lido.
+
+É a mesma família das duas armadilhas da config acima: **erro que não aparece no ambiente onde se
+trabalha.** O 404 em silêncio tinha build verde; este tem prova verde.
 
 ## A direção de evolução — declarada
 
