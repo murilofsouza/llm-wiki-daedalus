@@ -83,14 +83,38 @@ do gerador que publica **do vault**, não do repo.
 - **Parágrafo colado no `---` vira título.** Sem linha em branco no meio, markdown lê como *setext
   heading*: o parágrafo **inteiro** renderiza como `<h2>` e entra no índice lateral.
 
-- **Hash no YAML vai entre aspas, sempre.** Não é só o caso óbvio de hash só-de-dígitos: `5e070871` tem a
-  forma `<dígitos>e<dígitos>` e o YAML lê como **notação científica** — o expoente estoura para
-  `Infinity`, que chega ao script como `null`. Três specs nasceram com **aviso eterno** por isso, e o
-  sintoma é o pior possível num verificador: aviso que ninguém consegue silenciar trocando o hash.
+- **Valor de YAML vai entre aspas quando contém `: `, começa com `#`, ou tem forma de número.** O YAML
+  adivinha o tipo, e adivinha errado **em silêncio**. Três formas já morderam:
+
+  | O valor | O que o YAML entende | Sintoma |
+  |---|---|---|
+  | `5e070871` (hash) | notação científica → `Infinity` → `null` | **aviso eterno** que ninguém silencia trocando o hash |
+  | `Pesquisa concluída · próximo passo: especificação` | mapeamento aninhado | **parser estoura**, e num verificador sem guarda derruba a rodada |
+  | `#3` · `2026-08-03` | comentário · data | valor sumido ou tipo trocado |
+
+  A regra escrita antes cobria só o primeiro caso, e o segundo apareceu no projeto seguinte — sinal de
+  que a regra estava certa e **estreita**.
 
 - **Verificador que não acha o alvo avisa; nunca sai em silêncio.** Errar o nível de pasta na busca fazia
   a função **retornar sem conferir nada** — o pior modo de falhar. Alvo ausente é aviso explícito
   ("nenhuma spec foi conferida"), não sucesso vazio.
+
+- **E ele não morre na primeira ocorrência.** Um frontmatter inválido fez o parser estourar no primeiro
+  arquivo, e **um arquivo ruim escondeu os outros 24**. Verificador que aborta no primeiro achado
+  transforma uma varredura em uma-por-vez: quem roda corrige um, roda de novo, acha o seguinte.
+
+  A forma certa: **captura, reporta com arquivo e razão, e segue** — a publicação aborta no fim de
+  qualquer jeito. E cada tipo de alvo pede natureza própria: conteúdo publicado é erro; a peça sem a
+  qual não há como seguir (a capa, que carrega o manifest) é erro fatal; doc interno é aviso, porque
+  matar a publicação por defeito em doc interno é o remédio pior que a doença.
+
+- **Redirect errado é pior que 404.** Ao mover URLs, o que não tem equivalente **não recebe destino
+  adivinhado**: vai para o índice da seção, ou para nada. O 404 é visível e a pessoa pergunta; o
+  redirect errado **entrega conteúdo errado com cara de certo**, e ninguém reclama de uma página que
+  abriu.
+
+  E enquanto o mapeamento tem palpite dentro, ele é **temporário (307), não permanente**. Um 308 fica
+  em cache no navegador de quem já visitou e endurece o palpite.
 
 ## O que foi tentado e descartado — e por que fica registrado
 

@@ -169,6 +169,21 @@ convenções e os 20 que apontavam para o de stack continuaram válidos: o origi
 *"quero saber sobre… → ler"*, com a nota do split. Redirecionar custa quatro linhas; corrigir 42
 links custa uma tarde e erra em silêncio.
 
+## Documentar uma confusão é pior que remover a causa dela
+
+Quando você se pega escrevendo *"atenção: X não é Y, não confunda"*, pare e pergunte se **X ainda
+precisa existir**. Aviso é dívida permanente — alguém tem de ler, entender e lembrar, em toda sessão,
+para sempre. Remover a causa é dívida zero.
+
+O caso: um projeto ficou com dois scripts de nome parecido, um vivo e um resíduo de arquitetura
+anterior. A primeira reação foi escrever no onboarding *"o segundo não é o motor, não use como
+referência"* — e só depois checar se alguém ainda o importava. **Ninguém importava.** O aviso estava
+protegendo código morto.
+
+Vale para código, para doc e para config: **aviso que existe para compensar algo que podia ser
+apagado é o próprio sintoma.** E note a ordem — a checagem ("alguém usa isto?") custa um `grep`; o
+aviso custa toda leitura futura.
+
 ## Doc com um único link de entrada em todo o vault é doc esquecido
 
 E o sinal é de **conteúdo no lugar errado**, não de doc pouco lido.

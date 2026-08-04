@@ -171,6 +171,26 @@ spec ──hash──▶ camada do cliente ──gerado──▶ conteúdo ─�
   contra o construído**; bumpar antes de conferir compra silêncio e perde a verificação. Numa rodada,
   conferir 9 arquivos achou **12 afirmações velhas** que nenhuma leitura sem gatilho teria achado.
 
+- **Mas o primeiro hash é semeadura, não verificação** — e essa distinção evita um erro caro. Quando a
+  camada nasce, não existe "fonte que andou depois da tradução": existe uma tradução recém-escrita a
+  partir da fonte. Gravar o hash aí é **registrar o ponto de partida**, e é honesto *se e só se* quem
+  grava acabou de escrever a página a partir daquela fonte. Daí em diante, divergência é drift de
+  verdade, e vale a regra de cima.
+
+- **A forma do hash é contrato entre projetos, e diferença nela produz falso positivo em massa.**
+  Um projeto declarava `sha256(corpo.trim())` truncado em **12**; o motor computava sem `trim` e em
+  **8**. Resultado: **89 avisos, todos falsos** — as fontes estavam conferidas e o baseline semeado, mas
+  nenhuma comparação de string podia bater.
+
+  O dano não foi o ruído: foi o **diagnóstico**. A leitura óbvia de 89 avisos é "o baseline não foi
+  semeado", e agir nela teria **reescrito 83 hashes corretos** para um formato pior. Antes de tratar
+  uma safra de avisos como conteúdo, confira se **um** deles bate quando você recomputa à mão — se
+  nenhum bate, o defeito é de formato, não de conteúdo.
+
+  Por isso `trim`, comprimento e sentinelas aceitas são **config declarada**, não convenção implícita.
+  E `trim` é a escolha melhor, pela mesma razão do "hash e não data de modificação": espaço em branco
+  no fim do arquivo muda com editor e com sincronização de pasta.
+
 - **A camada de dado fica fora do `codigo_conferido` de propósito.** O arquivo de conteúdo é
   compartilhado por todas as telas: declará-lo faria **toda** mudança de conteúdo sinalizar **as 13
   specs**, e aviso que dispara à toa treina a ignorar o aviso. **Declara-se estrutura** — página e
