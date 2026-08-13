@@ -1,5 +1,5 @@
 # Método de projeto — o mapa
-Updated: 2026-08-04
+Updated: 2026-08-10
 
 O **workflow de projeto**: como um projeto se organiza, por onde entra coisa nova, o que é fonte única,
 como o material do cliente fala e o que a publicação verifica sozinha.
@@ -26,6 +26,7 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 | **Como se chama o arquivo?** | [estrutura-de-projeto](estrutura-de-projeto.md#a-mesma-regra-desce-um-nível-o-nome-do-arquivo-é-a-disciplina-do-documento) — a disciplina daquele documento, nunca a fase |
 | **Chegou pesquisa / decisão / mudança que o cliente lê. Onde vai?** | [regra-de-chegada](regra-de-chegada.md) — três perguntas, três destinos |
 | **Este número aparece em quantos lugares?** | [fonte-canonica](fonte-canonica.md) — número medido não se copia, cita-se com a fonte |
+| **Posso afirmar que o produto não tem isso hoje?** | [fonte-canonica](fonte-canonica.md#afirmação-sobre-o-estado-atual-vem-do-doc-que-auditou-a-tela) — só o doc que auditou a tela prova; dado de tráfego prova demanda, nunca ausência na interface |
 | **O cliente disse o contrário do que a gente mediu. E agora?** | [fonte-canonica](fonte-canonica.md#e-quando-a-conversa-contradiz-a-medição-pergunte-quem-é-dono-do-fato) — pergunte quem é dono do fato, e proteja a próxima leitura no §Histórico |
 | **Como se escreve o material que o cliente lê?** | [hub-como-se-escreve](hub-como-se-escreve.md) — proposta única no presente |
 | **O que a publicação verifica sozinha, e o que ela recusa publicar?** | [invariantes-de-publicacao](invariantes-de-publicacao.md) |
@@ -40,7 +41,7 @@ projeto — e a mesma regra: quem abre uma página tem de conseguir ler ela inte
 |---|---|
 | [estrutura-de-projeto](estrutura-de-projeto.md) | pastas, numeração, **nome de arquivo**, os três arquivos da raiz, registros contínuos, `_arquivo/`, quando e como dividir um doc |
 | [regra-de-chegada](regra-de-chegada.md) | a rota de qualquer coisa nova, para entrada nova não virar fonte concorrente |
-| [fonte-canonica](fonte-canonica.md) | a tabela de fonte única; como um número medido se propaga sem deixar cópia velha atrás; **o que fazer quando a fala do cliente contradiz a medição** |
+| [fonte-canonica](fonte-canonica.md) | a tabela de fonte única; como um número medido se propaga sem deixar cópia velha atrás; **de onde vem uma afirmação sobre o estado atual**, e o que fazer quando a fala do cliente contradiz a medição |
 | [hub-como-se-escreve](hub-como-se-escreve.md) | a camada do cliente: voz, o que fica, o que sai, e as três direções de verificação |
 | [invariantes-de-publicacao](invariantes-de-publicacao.md) | o que aborta a publicação, o que só avisa, e a régua para uma checagem entrar |
 | [verificacao-de-entregavel](verificacao-de-entregavel.md) | como se confere um wireframe: densidade, conteúdo de exemplo, variantes, critério de aceite exercitável, **o que trava a medição** |
