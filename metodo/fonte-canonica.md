@@ -27,6 +27,24 @@ páginas da camada do cliente e no contrato: **11 arquivos**. A fase do projeto 
 O que se copia é a **referência**; o valor mora num lugar. Quando o valor muda, o custo é editar um
 arquivo em vez de encontrar onze.
 
+## Afirmação sobre o estado atual vem do doc que auditou a tela
+
+Num mapa de oportunidades, a coluna **"Antes:"** é afirmação sobre **o produto como ele está hoje**. Ela
+só pode vir do doc que **auditou a interface** — a avaliação heurística, o inventário de cabeçalho e
+rodapé. Dado de tráfego prova que a **intenção existe**; nunca prova que a interface não a atende.
+
+Uma oportunidade declarava *"Antes: não há entrada na navegação"* para a área do aluno, derivada de 2.439
+cliques de busca pelo portal. A entrada **existia** — no cabeçalho de toda página, e o doc de avaliação
+heurística **já a listava**, item a item. O cliente desmontou em uma frase.
+
+Não foi pesquisa faltando: foi a coluna montada a partir do doc errado. E não é acidente isolado — é o
+mesmo modo de falha de qualquer afirmação larga sobre fraqueza relativa (*"ninguém do setor faz X"*,
+*"a marca é fraca em Y"*), que um clique do cliente derruba, levando junto a credibilidade das outras
+afirmações da página.
+
+**Ao escrever ou revisar uma linha de "Antes:", pergunte: qual doc mediu isto na tela?** Se a resposta for
+um doc de tráfego, a linha não está provada — busque a auditoria, ou confira na página ao vivo.
+
 ## Reverter é editar o estado vigente
 
 Ver [regra-de-chegada](regra-de-chegada.md#2-chegou-decisão). Aqui só a consequência: **uma verdade em
