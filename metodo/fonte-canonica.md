@@ -1,5 +1,5 @@
 # Fonte canônica e propagação de número
-Updated: 2026-08-03
+Updated: 2026-08-10
 
 Duas coisas, que são a mesma: **onde um fato mora** e **o que acontece quando ele muda**. É a página
 que o projeto pagou mais caro para escrever.
@@ -166,6 +166,40 @@ como irmão de um dos programas dele por semanas.
 **O detector é conversa com quem sabe, não busca.** Uma auditoria de sincronia promete **coerência
 entre superfícies**; não promete acerto sobre o mundo. Prometer o segundo é o que faz a equipe parar de
 perguntar.
+
+## E quando a conversa contradiz a medição: pergunte quem é dono do fato
+
+A seção acima manda conversar. Esta é sobre o que fazer quando a conversa **desmente o dado** — e o
+erro caro não é escolher o lado errado, é deixar a fala virar registro sem ressalva.
+
+Numa reunião, a página do cliente perguntava se as duas contas da ferramenta de mapa de calor tinham
+gravação ativa — **o item de maior valor da lista inteira**. Foi lido em voz alta. Um minuto depois,
+perguntados, os presentes responderam que a instituição não usa a ferramenta, e o nosso lado confirmou
+pelo briefing antigo. Ninguém percebeu. A medição em runtime, de quatro dias antes, tinha achado **duas
+contas carregando** — pelo gerenciador de tags, não pelo tema nem por plugin.
+
+**Não era o cliente contradizendo o dado.** Quem respondeu administra o site e o marketing; **ninguém na
+sala administrava o contêiner de tags**, que é onde o fato mora. A pergunta estava sendo feita a quem
+não é dono da superfície — então a correção não é na resposta, é **no dono da pergunta**: de *"há
+gravação?"* para *"quem administra o contêiner?"*.
+
+**A régua, antes de tratar fala de cliente como resposta:** *quem respondeu é dono da superfície onde o
+fato vive?* Se não é, a fala é informação sobre **o que a pessoa sabe** — que também vale registrar —,
+não sobre o mundo.
+
+**E o perigo real é a próxima leitura.** A reversão já estava no §Vigente desde a medição; o que a
+reunião produziu foi **uma fala nova reafirmando a premissa velha**, e ata é fonte. Sem uma linha
+explícita, quem ler a ata depois vê *"o cliente confirmou que não tem"* e apaga a pendência — **com
+razão**, porque a ata é o registro mais recente. Então: **premissa refutada que volta pela boca do
+cliente ganha linha no §Histórico**, dizendo que voltou e que **não reabriu**. É o que faz o registro de
+estado vencer a ata sem depender de alguém lembrar.
+
+**E decisão tomada em cima da premissa errada se registra separada do que ela não cobre.** Na mesma
+conversa decidiu-se **não instalar** ferramenta de comportamento agora — decisão boa, e independente do
+engano: no prazo restante não daria dado útil. Mas ela fala de *instalar*, e a pendência fala de
+*acessar o que já roda*. Registradas juntas, a primeira engole a segunda, e o custo é justamente a
+evidência que a pesquisa declarou não ter. **Duas frases, dois registros, com a fronteira escrita** —
+quem lê depois não tem o contexto da sala.
 
 ---
 
