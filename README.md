@@ -38,7 +38,6 @@ The wiki describes **the current state**; history lives in the `log` and the pla
 | [`protocols/close-plan.md`](protocols/close-plan.md) | Ship it: distill into the wiki (the anti-bloat rules live here), archive, log |
 | [`protocols/wiki-setup.md`](protocols/wiki-setup.md) | Bootstrap a fresh project's wiki (SCHEMA + pages + bootstrapper) |
 | [`health-check.md`](health-check.md) | The periodic lint — bloat signals + how to run it |
-| [`metodo/`](metodo/SCHEMA.md) | **The project workflow** — the boilerplate a new project starts from: structure, intake, canonical sources, publishing invariants (pt-BR) |
 
 Implement the protocols however your agent supports it (slash commands, skills, a prompt library). In the reference setup they're Claude Code commands (`/new-plan`, `/close-plan`, `/wiki-setup`).
 
@@ -52,19 +51,20 @@ Implement the protocols however your agent supports it (slash commands, skills, 
 - The release is **shorter on purpose**: it drops vault paths, client names, and store-specific mechanics, and keeps the rule plus the bug that produced it.
 - Sync flows **one way** (source → release), never back. A fix belongs in the running copy first, or the next session overwrites it.
 
-## Two layers: the pattern, and the workflow
+## This repo is the pattern, not your domain's method
 
-This repo is the **boilerplate you start a project from**, and it holds two layers that answer different questions:
+**What this repo holds** (`guide.md`, `protocols/`, `health-check.md`) is *how the wiki stays lean*: ingest, query, lint, and the anti-bloat loop. Agent-, store- and domain-agnostic.
 
-- **The pattern** (`guide.md`, `protocols/`, `health-check.md`) — *how the wiki stays lean*: ingest, query, lint, and the anti-bloat loop. Agent- and domain-agnostic.
-- **The workflow** ([`metodo/`](metodo/SCHEMA.md)) — *what the wiki documents*: how a project is structured, where new input goes, what is canonical, how the client-facing layer is written, what publishing refuses to publish. **Written in pt-BR**, and every rule arrives with the bug that produced it.
+**What it deliberately does not hold** is *your* method — how a project of your kind is structured, what your delivery verifies, how your client-facing material is written. That belongs to a **shared method of your own**, one per domain, that your project wikis point at.
 
-Two rules keep it a boilerplate instead of a scrapbook:
+Keeping the two apart is not tidiness. They answer different questions and have different readers, and merged they tax each other: every page of a merged method opens by explaining when it does *not* apply. This repo carried a `metodo/` folder for exactly that reason and it grew to 2.5× the pattern before the split — [the split is recorded below](#history).
 
-- **Referenced, never copied.** Each project's wiki **points at** `metodo/` and keeps only what is its own (`client`, `stack`, `conventions`). A cross-project rule duplicated inside a project wiki is a bug — copying the workflow per project is exactly the failure it exists to prevent.
+Two rules make a shared method work, whatever domain it covers:
+
+- **Referenced, never copied.** Each project's wiki **points at** the shared method and keeps only what is its own (`client`, `stack`, `conventions`). A cross-project rule duplicated inside a project wiki is a bug — copying the method per project is exactly the failure it exists to prevent. Six months in you have six diverging versions and none is the source.
 - **Every rule carries its bug, and the bug carries no names.** The evidence is the situation and the number (*"the count ended up living in 11 files"*) — never the client, the city, or the competitor. A rule that only holds up by naming someone doesn't go in.
 
-Not every project ends in code. The workflow declares [where a project stops](metodo/fases-e-agentes.md) — research and scope, layout, UI handed off, or live — and which parts switch off with it. Verification with no target is worse than no verification.
+And one that applies to both layers: **not every project ends in code.** Declare where yours stops — research and scope, layout, UI handed off, or live — and switch off the checks that lose their target. A `code_checked` field on a project with no code is an empty field that the next sweep reads as a pending task, and that trains people to ignore empty fields. **Verification with no target is worse than no verification.**
 
 ## Structure
 
@@ -99,6 +99,21 @@ Not every project ends in code. The workflow declares [where a project stops](me
 2. Run the [`wiki-setup`](protocols/wiki-setup.md) protocol to bootstrap `SCHEMA.md` + pages.
 3. Wire [`new-plan`](protocols/new-plan.md) / [`close-plan`](protocols/close-plan.md) as your open/close workflow — this is where the anti-bloat discipline gets enforced.
 4. Schedule the [`health-check`](health-check.md) (e.g. monthly) as the safety net.
+
+## History
+
+**The `metodo/` folder was removed.** For a while this repo also carried the author's own project method — a UX-research delivery workflow, in pt-BR — as a second layer. It grew to 1,422 lines against the pattern's ~580: the guest was 2.5× the house, in a different language, for a different reader.
+
+What made it a defect rather than a preference was measurable. Because the two halves never applied at the same time, the method needed traffic control: a whole section of its map, a four-stop table, and per-page banners existed only to say which half applied — **every page opened by explaining when it did not apply.** And it started breaking its own headline rule: *"one truth in two files is two sources"*, while one of its rules was stated five times in five files with none of them naming an owner, and one case study was narrated in full twice, copying a measured number along with it.
+
+The root cause is the more useful lesson: **that method was the only piece of the system with no bottleneck.** The publishing script next to it works because it *aborts* — it sits where all content passes, so a wrong rule fails immediately. Prose has no such gate, and this repo's own guide already says it: *what has automated verification doesn't come back; what depends on reading comes back every time.* So it grew and duplicated unchecked.
+
+Two things follow, and they're why this section exists instead of a silent deletion:
+
+- **Splitting prose by folder is not the fix.** A split with no bottleneck on either side yields two better-organized bodies of unenforced prose. Each side has to declare what actually enforces it, and a rule no gate can ever check is a candidate for deletion, not relocation.
+- **The criterion that authorized the merge was ours, and it was incomplete.** *"Divide by what the artifact is, not by subject"* separates prose from code well and is **blind to separating prose from prose**. The missing half: **who reads it, and what it is the source of.**
+
+The method now lives in its own private repo with all 15 of its commits, and this one is back to a single subject. If you cloned this repo when `metodo/` was here, nothing was lost — it moved.
 
 ---
 
