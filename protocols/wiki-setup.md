@@ -8,7 +8,11 @@ Bootstrap the LLM Wiki for a new project. Follow every step.
 
 ## 0 — Read the method first
 
-Read the shared method's `SCHEMA` and its structure page ([`metodo/`](../metodo/SCHEMA.md) here). **That's where the shape comes from** — this protocol is the executor, not the source.
+Read your shared method's `SCHEMA` and its structure page. **That's where the shape comes from** — this protocol is the executor, not the source. The method is domain-specific and lives outside this repo, one per domain; this protocol only needs three things from it, and if they aren't written down yet, write them before running this:
+
+- **How folders are named.** The rule that survives: *the number is reading order, the name is the subject — never the phase.* A folder called `1 — Discovery` is a phase, and phases end; the folder then freezes in that vocabulary while content keeps arriving.
+- **Where the wiki sits.** At the **client** level, shared by all of that client's projects — not per project, or the second project duplicates `client` and `stack` and the copy is the one that goes stale.
+- **What is canonical for each theme** — one owner per fact, so this protocol knows what the new `SCHEMA` must point at instead of restate.
 
 ⚠️ **A new wiki is born LINKING the method, never copying it.** No cross-project rule gets written inside a project's wiki: that wiki holds `client` · `stack` · `conventions` (the gotchas of **that** stack) and this project's **config**. Everything else points at the shared method.
 
